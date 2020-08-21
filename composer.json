@@ -1,0 +1,25 @@
+{
+  "name": "pabloquadrado/todoist-integration",
+  "description": "Automatizações de processos e tarefas do todoist.",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Pablo R. Quadrado",
+      "email": "dev.pabloquadrad@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "App\\": "src"
+    },
+    "files": [
+      "src/Core/config.php",
+      "src/Core/functions.php"
+    ]
+  },
+  "require": {
+    "coffeecode/router": "1.0.*",
+    "guzzlehttp/guzzle": "^7.0"
+  }
+}
