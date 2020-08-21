@@ -18,14 +18,4 @@ class Factory
     {
         return new Task();
     }
-
-    /**
-     * Retorna um recurso para operações nos projetos.
-     *
-     * @return Project
-     */
-    public function createProject()
-    {
-        return new Project();
-    }
 }

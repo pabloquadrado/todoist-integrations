@@ -32,7 +32,16 @@ class Task extends Base
         return $this->getResponse($response);
     }
 
-    public function update($task)
+    /**
+     * Atualizar o nome de uma tarefa.
+     *
+     * @param string $task
+     *
+     * @return array|bool|float|int|object|string|null
+     *
+     * @throws GuzzleException
+     */
+    public function updateContent($task)
     {
         $response = $this->client->post(self::RESOURCE . "/{$task['id']}", [
             'headers' => [

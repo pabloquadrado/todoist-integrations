@@ -6,7 +6,7 @@ use DateTime;
 use Exception;
 
 /**
- * Facade de recursos da integração com o Todoist.
+ * Fachada de recursos da integração com o Todoist.
  *
  * @package App
  */
@@ -59,7 +59,7 @@ class Todoist
                         $task['content']
                     );
 
-                    $taskResource->update($task);
+                    $taskResource->updateContent($task);
 
                     continue;
                 }
@@ -69,7 +69,7 @@ class Todoist
                     $task['content']
                 );
 
-                $taskResource->update($task);
+                $taskResource->updateContent($task);
             }
 
         } catch (Exception $exception) {
@@ -82,14 +82,12 @@ class Todoist
     /**
      * Finaliza aplicação e exibe retorno dentro da estrutura padrão.
      *
-     * @param $response
+     * @param string|array $response
      */
     private function getResponse($response)
     {
         header('Content-Type: application/json');
 
-        die(json_encode([
-            'data' => $response
-        ]));
+        die(json_encode(['data' => $response]));
     }
 }
