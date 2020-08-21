@@ -22,3 +22,5 @@ Esta automatização possibilita o controle de recorrência dos hábitos no Todo
 3. Quando completar a tarefa, o ``` [day 0] ``` irá se tornar ``` [day 1] ```.
 
 4. Se você falhar em completar a tarefa e atrasá-la, o script vai resetar a recorrência mudando de ``` [day X] ``` para ``` [day 0] ```.
+
+Observação: O script necessita ser executado ao final do dia para que a automatização ocorra.
