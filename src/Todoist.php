@@ -2,6 +2,7 @@
 
 namespace App;
 
+use DateInterval;
 use DateTime;
 use Exception;
 
@@ -59,7 +60,7 @@ class Todoist
                         $task['content']
                     );
 
-                    $taskResource->updateContent($task);
+                    $taskResource->update($task);
 
                     continue;
                 }
@@ -69,7 +70,15 @@ class Todoist
                     $task['content']
                 );
 
-                $taskResource->updateContent($task);
+                $dueDate->add(new DateInterval('P1D'));
+
+                if (isset($task['due']['datetime'])) {
+                    $task['due_datetime'] = $dueDate->format(DateTime::RFC3339);
+                } else {
+                    $task['due_date'] = $dueDate->format('Y-m-d');
+                }
+
+                $taskResource->update($task);
             }
 
         } catch (Exception $exception) {
