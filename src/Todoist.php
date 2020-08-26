@@ -51,9 +51,9 @@ class Todoist
                     continue;
                 }
 
-                $dueDate = new DateTime($task['due']['date']);
+                $dueDate = new DateTime($task['due']['datetime'] ?: $task['due']['date']);
 
-                if ($dueDate->format('Y-m-d') != (new DateTime())->format('Y-m-d')) {
+                if ($dueDate->getTimestamp() > (new DateTime())->getTimestamp()) {
                     $task['content'] = $taskComponent->updateRecurrence(
                         $recurrence,
                         $task['content']
