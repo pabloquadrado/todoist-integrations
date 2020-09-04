@@ -37,7 +37,7 @@ class Todoist
 
             $taskResource = $this->resourceFactory->createTask();
 
-            $tasks = $taskResource->getHabitsTasks();
+            $tasks = $taskResource->getTodayHabits();
 
             if (empty($tasks)) {
                 $this->getResponse('Nenhuma tarefa no projeto Habits.');
@@ -52,9 +52,7 @@ class Todoist
                     continue;
                 }
 
-                $dueDate = new DateTime($task['due']['datetime'] ?: $task['due']['date']);
-
-                if ($dueDate->getTimestamp() > (new DateTime())->getTimestamp()) {
+                if ($taskComponent->isHabitCompleted($task['due'])) {
                     $task['content'] = $taskComponent->updateRecurrence(
                         $recurrence,
                         $task['content']
@@ -70,15 +68,7 @@ class Todoist
                     $task['content']
                 );
 
-                $dueDate->add(new DateInterval('P1D'));
-
-                if (isset($task['due']['datetime'])) {
-                    $task['due_datetime'] = $dueDate->format(DateTime::RFC3339);
-                } else {
-                    $task['due_date'] = $dueDate->format('Y-m-d');
-                }
-
-                $taskResource->update($task);
+                $taskResource->update($taskComponent->increaseDueDate($task));
             }
 
         } catch (Exception $exception) {

@@ -15,17 +15,18 @@ class Task extends Base
     const RESOURCE = '/rest/v1/tasks';
 
     /**
-     * Consulta as tarefas do projeto chamado Habits.
+     * Consulta as tarefas do projeto chamado Habits
+     * com data de vencimento para o dia atual.
      *
      * @return array
      *
      * @throws GuzzleException
      */
-    public function getHabitsTasks()
+    public function getTodayHabits()
     {
         $response = $this->client->get(self::RESOURCE, [
             'query' => [
-                'filter' => '#Habits'
+                'filter' => '#Habits & Today'
             ]
         ]);
 
