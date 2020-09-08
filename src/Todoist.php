@@ -37,7 +37,7 @@ class Todoist
 
             $taskResource = $this->resourceFactory->createTask();
 
-            $tasks = $taskResource->getTodayHabits();
+            $tasks = $taskResource->getHabitsTasks();
 
             if (empty($tasks)) {
                 $this->getResponse('Nenhuma tarefa no projeto Habits.');
